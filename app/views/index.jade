@@ -1,0 +1,19 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='description' content='')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    meta(name='mobile-web-app-capable' content='yes')
+    link(rel='stylesheet' href='/assets/vendor.css')
+    link(rel='stylesheet' href='/assets/semantic.css')
+    link(rel='stylesheet' href='/assets/application.css')
+    title Confur admin
+    base(href='/')
+  body(ng-app='confur' ng-controller='MainCtrl' ng-cloak=true ng-jq='jQuery')
+    nav(ng-include='"/templates/main/_header.html"')
+    #content.ui.page.grid.main
+      .column(ng-view ng-cloak=true)
+    script(src='/assets/vendor.js')
+    script(src='/assets/application.js')
+    script(src='/assets/semantic.js')
