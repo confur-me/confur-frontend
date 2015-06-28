@@ -1,0 +1,33 @@
+.logo
+  width: $logo-width
+  height: $logo-height
+  background-image: url(/assets/confee.svg)
+  background-repeat: no-repeat
+  background-size: 100%
+
+.navbar-brand
+  padding-top: (($navbar-height - $logo-height) / 2)
+  padding-bottom: (($navbar-height - $logo-height) / 2)
+
+.navbar-toggle
+  display: inline-block
+
+#search-form
+  margin: (($navbar-height - $search-form-height) / 2) 0
+  //padding: 0 20px
+  .input-group
+  .input-group > input
+    border-right-color: $brand-primary
+    height: $search-form-height
+  .input-group-btn > button
+    margin-right: 20px
+    height: $search-form-height
+
+@media (min-width: 768px)
+  .logo
+    background-position: 0 0
+
+@media (max-width: 767px)
+  .logo
+    background-position: 0 100%
+    margin-right: -164px

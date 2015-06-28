@@ -4,6 +4,13 @@ $             = require('jquery')
 window.jQuery = $
 Angular = require('angular')
 
+require('bootstrap-styl/js/scrollspy')
+require('bootstrap-styl/js/transition')
+require('bootstrap-styl/js/button')
+require('bootstrap-styl/js/affix')
+require('bootstrap-styl/js/modal')
+require('bootstrap-styl/js/carousel')
+
 require('angular-loading-bar')
 
 App = Angular
@@ -25,7 +32,7 @@ App
   ])
 
 require('./main')
-#require('./welcome')
+require('./welcome')
 require('./conferences')
 require('./videos')
 require('./events')

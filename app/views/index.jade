@@ -6,14 +6,16 @@ html(lang='en')
     meta(name='viewport' content='width=device-width, initial-scale=1')
     meta(name='mobile-web-app-capable' content='yes')
     link(rel='stylesheet' href='/assets/vendor.css')
-    link(rel='stylesheet' href='/assets/semantic.css')
     link(rel='stylesheet' href='/assets/application.css')
-    title Confur admin
+    title Confur me
     base(href='/')
   body(ng-app='confur' ng-controller='MainCtrl' ng-cloak=true ng-jq='jQuery')
-    nav(ng-include='"/templates/main/_header.html"')
-    #content.ui.page.grid.main
-      .column(ng-view ng-cloak=true)
+    ng-include(src='"/templates/main/_header.html"')
+    .container
+      .row
+        .col-md-9(ng-view ng-cloak=true)
+        .col-md-3(ng-cloak=true)
+          ng-include(src='"/templates/main/_sidebar.html"')
+    //-ng-include(src='"/templates/main/_footer.html"')
     script(src='/assets/vendor.js')
     script(src='/assets/application.js')
-    script(src='/assets/semantic.js')

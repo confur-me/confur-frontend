@@ -1,0 +1,37 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='description' content='')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    meta(name='mobile-web-app-capable' content='yes')
+    link(rel='stylesheet' href='/assets/vendor.css')
+    link(rel='stylesheet' href='/assets/application.css')
+    title WELCOME
+    base(href='/')
+  body.welcome-page(ng-app='confur' ng-controller='MainCtrl' ng-cloak=true ng-jq='jQuery')
+    //(ng-controller='WelcomeCtrl' ng-cloak=true)
+    .wrapper
+      .wrapper-inner
+        .cover-container
+          //-.masthead.clearfix
+            //-.inner
+              //-h3.masthead-brand Cover
+
+          .inner.cover.text-left
+            p.h4 Yep, someone has finally done it.
+            p.h1
+              | Here are the code & design videos from the conferences all over the world.
+              br
+              | Aggregated in one spot, for your pleasure.
+            p.lead.font.advent.text-center
+              a(href="/videos" target="_self" class="btn btn-lg btn-transparent") log in
+              | or&nbsp;
+              a(href="/videos" target="_self" class="btn btn-lg btn-primary btn-transparent") Sign up for 30 day trial
+
+          .welcome-footer.text-center
+            .inner
+              p.h4.font.advent
+                a(href='#') Take a tour
+    script(src='/assets/vendor.js')
+    script(src='/assets/application.js')

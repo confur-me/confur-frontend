@@ -1,0 +1,18 @@
+.sidebar
+  .page-header
+    h2 Coming up
+    div(ng-controller='EventsCtrl')
+      div(ng-repeat='event in events track by event.id')
+        .thumbnail.event-item
+          img(ng-src='{{ event.thumbnail }}')
+          .details
+            h4 {{ event.title }}
+            p {{ event.conference_slug }}
+  .page-header
+    h2 Latest conferences
+    div(ng-controller='ConferencesCtrl')
+      div(ng-repeat='conference in conferences track by conference.slug')
+        .thumbnail.conference-item
+          img(ng-src='{{ conference.thumbnail }}')
+          .details
+            h4 {{ conference.title }}

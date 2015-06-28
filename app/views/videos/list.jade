@@ -1,0 +1,12 @@
+.page-header
+  h1 Latest videos
+.row
+  .col-xs-12.col-sm-6.col-md-4(ng-repeat='video in videos track by video.id')
+    .video-item
+      .thumbnail
+        i.play.material-icon.md-light play_circle_filled
+        img(ng-src='{{ video.thumbnail }}')
+        .details
+          h4 {{ video.title }}
+          p {{ video.conference_slug }}
+          p {{ video.tags }}

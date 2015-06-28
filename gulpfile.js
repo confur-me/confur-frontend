@@ -3,33 +3,43 @@
 /**
  * Dependencies
  */
-var path         = require('path');
-var gulp         = require('gulp');
-var stylus       = require('gulp-stylus');
-var less         = require('gulp-less');
-var coffee       = require('gulp-coffee');
-var gutil        = require('gulp-util');
-var gulpJade     = require('gulp-jade');
-var jade         = require('jade');
-var autoprefixer = require('gulp-autoprefixer');
-var sourcemaps   = require('gulp-sourcemaps');
-var watch        = require('gulp-watch');
-var browserify   = require('gulp-browserify');
-var rename       = require('gulp-rename');
-var symlink      = require('gulp-symlink');
-var pkg          = require('./package');
-var dependencies = Object.keys(pkg.dependencies);
+var path         = require('path'),
+    gulp         = require('gulp'),
+    stylus       = require('gulp-stylus'),
+    bootstrap    = require('bootstrap-styl'),
+    coffee       = require('gulp-coffee'),
+    gutil        = require('gulp-util'),
+    gulpJade     = require('gulp-jade'),
+    jade         = require('jade'),
+    autoprefixer = require('gulp-autoprefixer'),
+    sourcemaps   = require('gulp-sourcemaps'),
+    watch        = require('gulp-watch'),
+    browserify   = require('gulp-browserify'),
+    rename       = require('gulp-rename'),
+    symlink      = require('gulp-symlink'),
+    pkg          = require('./package'),
+    dependencies = Object.keys(pkg.dependencies);
 
-var appCss          = './app/styles/application.styl';
-var cssGlob         = './app/styles/**/*.styl';
-var vendorCss       = './app/styles/vendor.less';
-var appJs           = './app/js/application.coffee';
-var jsGlob          = './app/js/**/*.coffee';
-var jadeGlob        = './app/views/**/*.jade';
-var outputAssetsDir = './public/assets';
-var outputTemplatesDir = './public/templates';
+var appCss          = './app/styles/application.styl',
+    vendorCss       = './app/styles/vendor.styl',
+    cssGlob         = './app/styles/**/*.styl',
+    appJs           = './app/js/application.coffee',
+    appImages       = './app/images/**',
+    vendorJs        = './app/js/vendor.coffee',
+    jsGlob          = './app/js/**/*.coffee',
+    jadeGlob        = './app/views/**/*.jade',
+    outputAssetsDir = './public/assets',
+    outputTemplatesDir = './public/templates',
+    outputFontsDir = './public/fonts';
 
-var paths = []
+var paths = {};
+
+paths.styles = []
+  .concat(path.resolve('./app/styles'))
+  .concat(path.resolve('./node_modules'))
+  .concat(path.resolve('./node_modules/bootstrap-styl'));
+
+paths.js = []
   .concat(path.resolve('./app/js'))
   .concat(path.resolve('./node_modules'));
 
@@ -37,58 +47,45 @@ var gulp_log = function(e, p) {
   console.log('File ' + p + ' was ' + e + ', running tasks...');
 };
 
-var semanticConf = require('./semantic.json');
-var semanticDist = semanticConf.base+semanticConf.paths.output.packaged;
-var semanticCss = semanticDist+'semantic.min.css';
-var semanticJs = semanticDist+'semantic.min.js';
-var semanticThemesGlob = semanticDist+'themes/**';
-
-
-gulp.task('semantic:fonts', function() {
-  return gulp.src(semanticThemesGlob, { base: semanticDist })
-    .pipe(gulp.dest(outputAssetsDir));
-});
-
-gulp.task('semantic:js', function() {
-  return gulp.src(semanticJs)
-    .pipe(rename('semantic.js'))
-    .pipe(gulp.dest(outputAssetsDir));
-});
-
-gulp.task('semantic:css', function() {
-  return gulp.src(semanticCss)
-    .pipe(rename('semantic.css'))
-    .pipe(gulp.dest(outputAssetsDir));
-})
-
 gulp.task('app:js', function() {
   return gulp.src(appJs, { read: false })
-    .pipe(sourcemaps.init())
+    //.pipe(sourcemaps.init())
     //.pipe(coffee({bare: true}))
     .pipe(browserify({
       //insertGlobals : true,
       transform: ['coffeeify'],
       extensions: ['.coffee', '.js'],
-      paths: paths,
+      paths: paths.js,
       external: dependencies
     }))
     //.pipe(rev())
     .pipe(rename('application.js'))
-    .pipe(sourcemaps.write())
+    //.pipe(sourcemaps.write())
+    .pipe(gulp.dest(outputAssetsDir))
+  ;
+});
+
+gulp.task('app:images', function() {
+  return gulp.src(appImages)
     .pipe(gulp.dest(outputAssetsDir))
   ;
 });
 
 gulp.task('vendor:js', function() {
-  return gulp.src('./app/js/vendor.js', { read: false})
+  return gulp.src(vendorJs, { read: false})
     .pipe(browserify({
-      paths: paths,
+      transform: ['coffeeify'],
+      extensions: ['.coffee', '.js'],
+      paths: paths.js,
       require: dependencies,
-      debug: true,
+      //external: dependencies
+      //,
+      //debug: true,
       cache: {},
       packageCache: {},
       fullPaths: true
     }))
+    .pipe(rename('vendor.js'))
     .pipe(gulp.dest(outputAssetsDir))
   ;
 });
@@ -96,7 +93,10 @@ gulp.task('vendor:js', function() {
 gulp.task('app:css', function() {
   return gulp.src(appCss)
     .pipe(sourcemaps.init())
-    .pipe(stylus())
+    .pipe(stylus({
+      paths         : paths.styles,
+      'include css' : true
+    }))
     .pipe(autoprefixer({
         cascade: false
       }))
@@ -107,8 +107,9 @@ gulp.task('app:css', function() {
 
 gulp.task('vendor:css', function() {
   return gulp.src(vendorCss)
-    .pipe(less({
-      paths: paths
+    .pipe(stylus({
+      paths         : paths.styles,
+      'include css' : true
     }))
     .pipe(gulp.dest(outputAssetsDir))
   ;
@@ -124,13 +125,32 @@ gulp.task('jade', function () {
 });
 
 gulp.task('symlinks', function () {
-  return gulp.src('./public/templates/index.html', { read: false })
-    .pipe(symlink('./public/index.html', { force: true }))
+  return gulp.src([
+    './public/templates/index.html',
+    './public/templates/welcome.html',
+    './public/templates/errors/404.html',
+    './public/templates/errors/500.html'
+    ], { read: false })
+    .pipe(symlink([
+        './public/index.html',
+        './public/welcome.html',
+        './public/404.html',
+        './public/500.html'
+        ], { force: true }))
+});
+
+gulp.task('vendor:fonts', function() {
+  return gulp.src([
+    './node_modules/bootstrap-styl/fonts/*',
+    './node_modules/material-design-icons/iconfont/*'
+    ])
+    .pipe(gulp.dest(outputFontsDir))
+  ;
 });
 
 // watch for css
 gulp.task('watch-css', function() {
-  gulp.watch(cssGlob,
+  gulp.watch([ cssGlob, '!'+vendorCss ],
     ['app:css']
   ).on('change', function(event) {
     gulp_log(event.type, event.path);
@@ -155,8 +175,7 @@ gulp.task('watch-jade', function() {
   });
 });
 
-gulp.task('semantic', ['semantic:js', 'semantic:css', 'semantic:fonts']);
-gulp.task('app', ['app:js', 'app:css', 'jade', 'symlinks']);
-gulp.task('vendor', ['vendor:js', 'vendor:css']);
-gulp.task('default', ['semantic', 'app', 'vendor']);
+gulp.task('app', ['app:js', 'app:css', 'app:images', 'jade', 'symlinks']);
+gulp.task('vendor', ['vendor:js', 'vendor:css', 'vendor:fonts']);
+gulp.task('default', ['app', 'vendor']);
 gulp.task('watch', ['default', 'watch-js', 'watch-css', 'watch-jade']);
