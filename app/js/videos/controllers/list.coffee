@@ -1,14 +1,18 @@
 'use strict'
 
-_ = require('lodash')
+_  = require('lodash')
+Ps = require('perfect-scrollbar')
 
 module.exports = ($scope, $routeParams, $location, location, Video) ->
 
-  $scope.repeat     = false
-  $scope.shuffle    = false
+  $scope.initScroll = ->
+    playlistContainer = angular.element('#playlist')[0]
+    Ps.initialize(playlistContainer)
 
   init = ->
     $scope.nowPlaying = null
+    $scope.repeat     = false
+    $scope.shuffle    = false
 
     unless $scope.videos
       $scope.videos =
@@ -25,6 +29,9 @@ module.exports = ($scope, $routeParams, $location, location, Video) ->
           Video.query()
 
     $scope.play($location.hash())
+
+    $scope.videos.$promise.then ->
+      Ps.update(playlistContainer)
 
   $scope.play = (videoId) ->
     videoId = parseInt(videoId)

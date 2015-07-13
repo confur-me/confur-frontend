@@ -21,8 +21,6 @@ $selection-color = lighten($link-color, 90%)
   border-bottom-left-radius: $border-radius
   border-bottom-right-radius: $border-radius
   max-height: 80%
-  overflow-y: scroll
-  overflow-x: hidden
   & > ul
     padding: 0
     margin: 0
@@ -36,5 +34,6 @@ $selection-color = lighten($link-color, 90%)
       .thumbnail
         background-color: transparent
         max-height: $suggest-item-height - (2 * $suggest-item-padding)
+        max-width: 100px
         border: none
         border-radius: none

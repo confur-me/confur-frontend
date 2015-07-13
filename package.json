@@ -46,6 +46,7 @@
     "angular-sanitize": "^1.4.0",
     "jquery": "^2.1.4",
     "lodash": "^3.9.3",
+    "perfect-scrollbar": "^0.6.3",
     "video.js": "^4.12.11",
     "videojs-persistvolume": "git+https://github.com/kressh/videojs-persistvolume.git",
     "videojs-playlist": "^1.0.2",
