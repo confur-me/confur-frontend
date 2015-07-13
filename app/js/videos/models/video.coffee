@@ -1,6 +1,6 @@
 'use strict'
 
-module.exports = ($resource) ->
+module.exports = ($resource, Youtube, Vimeo) ->
   Video =
     $resource '/api/videos/:id',
       id: '@id'
@@ -19,5 +19,15 @@ module.exports = ($resource) ->
         params:
           event_id: '@event_id'
           limit: 21
+
+  Video::embedSrc = ->
+    return @embed_src if @embed_src
+    switch @service
+      when 'youtube'
+        @service_id ||= Youtube.parseId(@url)
+        @embed_src = Youtube.embedSrc(@service_id)
+      when 'vimeo'
+        @service_id ||= Vimeo.parseId(@url)
+        @embed_src = Vimeo.embedSrc(@service_id)
 
   Video

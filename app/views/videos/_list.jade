@@ -1,0 +1,18 @@
+.videos-list.row(ng-if='!nowPlaying')
+  .col-xs-12.col-sm-6.col-md-4(ng-repeat='video in videos track by video.id' )
+    .video-item(bindonce="video")
+      //-.embed-responsive.embed-responsive-16by9(ng-show='playingVideoId == video.id')
+        //-iframe.embed-responsive-item(bo-src="trustSrc(video.embedSrc())")
+
+      .thumbnail
+        a(ng-click="play(video.id)")
+          img(bo-src='video.thumbnail' bo-alt='video.title')
+          //-img(ng-src='http://admin.confur.local/miniramp.jpg')
+          i.play.material-icon.md-light play_circle_filled
+      .details
+        h4(bo-text='video.title')
+        p
+          a(bo-href="'/conferences/' + video.conference_slug" bo-text='video.conference.title')
+        p(confur-video-tags="video.id")
+
+ng-include(src="'/templates/videos/_playlist.html'" ng-if='nowPlaying')

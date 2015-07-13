@@ -1,29 +1,61 @@
+@require './bs/variables'
+
+$selection-color = lighten($link-color, 90%)
+
 .video-item
-  height: 350px
+  min-height: 350px
+  margin-bottom: 40px
   .thumbnail
     border: none
     padding: 0
     border-radius: none
     transition: none
-    margin-bottom: 40px
+    margin: 0
     position: relative
+    background-color: $gray-lighter
+    img
+      $min-width = 212px
+      min-width = $min-width
+      min-height: (($min-width * 9) / 16)
   .details
     padding-top: 6px
   .play
-    width: 100%
-    height: 100%
+    $play-button-width = 120px
+    //width: 100%
+    //height: 100%
     position: absolute
-    font-size: 12rem
-    opacity: 0.4
+    font-size: $play-button-width
+    opacity: .5
     z-index: 10
-    top: 0
-    left: 0
+    top: 50%
+    left: 50%
     transition: opacity .3s
     cursor: pointer
-    margin: 0
-    text-align: center
-    line-height: 12rem
+    margin-top: -($play-button-width / 2)
+    margin-left: -($play-button-width / 2)
     text-shadow: none
-    padding-top: 4rem
     &:hover
-      opacity: .8
+      opacity: .9
+
+.vjs-big-play-button
+  display: none !important
+
+#playlist
+  & > ul
+    height: 500px !important
+    overflow-y: scroll
+    overflow-x: hidden
+    padding: 0
+    margin: 0
+    & > li
+      cursor: pointer
+      padding: 8px
+      list-style-type: none
+      &.active
+        background-color: $selection-color
+      //&:hover
+        //background-color: lighten($selection-color, 50%)
+      .thumbnail
+        padding: 0 !important
+        margin: 0 !important
+        max-height: 100px

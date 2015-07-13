@@ -1,0 +1,8 @@
+.video-show
+  .video-item(bindonce='video')
+    ng-videojs(video="video")
+    //-video.video-js.vjs-default-skin.vjs-big-play-centered(controls=true preload="false" ng-videojs="video")
+    //-.embed-responsive.embed-responsive-16by9
+      //-iframe.embed-responsive-item(ng-src="{{ trustSrc(video.embedSrc()) }}")
+    .details
+      h3(bo-text='video.title')

@@ -7,4 +7,7 @@ module.exports = ($resource) ->
       slug: '@slug'
     ,
 
+  Conference.find = (slug) ->
+    Conference.get(slug: slug)
+
   Conference

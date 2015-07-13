@@ -12,5 +12,8 @@ module.exports = ($resource) ->
         params:
           conference_slug: '@conference_slug'
 
+  Event.find = (slug) ->
+    Event.get(slug: slug)
+
   Event
 

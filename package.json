@@ -16,6 +16,7 @@
   "devDependencies": {
     "bootstrap-styl": "^4.0.5",
     "browserify": "^10.1.2",
+    "browserify-shim": "^3.8.9",
     "coffee-script": "^1.9.2",
     "coffeeify": "^1.1.0",
     "gulp": "^3.8.11",
@@ -38,11 +39,16 @@
   "dependencies": {
     "angular": "^1.4.1",
     "angular-animate": "^1.4.1",
+    "angular-bindonce": "^0.3.1",
     "angular-loading-bar": "^0.7.1",
     "angular-resource": "^1.4.1",
     "angular-route": "^1.4.1",
     "angular-sanitize": "^1.4.0",
     "jquery": "^2.1.4",
-    "lodash": "^3.9.3"
+    "lodash": "^3.9.3",
+    "video.js": "^4.12.11",
+    "videojs-persistvolume": "git+https://github.com/kressh/videojs-persistvolume.git",
+    "videojs-playlist": "^1.0.2",
+    "videojs-youtube": "^1.2.12"
   }
 }

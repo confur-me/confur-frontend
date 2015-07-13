@@ -3,19 +3,25 @@ html, body
 
 body
   &.welcome-page
-    background-color: #231F26
+    background-color: #000 !important
     background: url('/assets/welcome-bg.jpg') no-repeat
     background-size: cover
     background-position: center center
     color: #fff
     text-align: center
 
+    .logo
+      position: absolute
+      top: 20px
+      left: 20px
+      background-position: 0 -82px
+
     .wrapper
       display: table
       width: 100%
       height: 100%
       min-height: 100%
-      background-color: rgba(24, 32, 36, 0.7)
+      //background-color: rgba(24, 32, 36, 0.7)
 
     .wrapper-inner
       display: table-cell

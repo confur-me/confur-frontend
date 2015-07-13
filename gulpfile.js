@@ -142,7 +142,8 @@ gulp.task('symlinks', function () {
 gulp.task('vendor:fonts', function() {
   return gulp.src([
     './node_modules/bootstrap-styl/fonts/*',
-    './node_modules/material-design-icons/iconfont/*'
+    './node_modules/material-design-icons/iconfont/*',
+    './node_modules/video.js/dist/video-js/font/*'
     ])
     .pipe(gulp.dest(outputFontsDir))
   ;

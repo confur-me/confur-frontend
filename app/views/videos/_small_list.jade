@@ -1,0 +1,9 @@
+ul
+  li(ng-repeat='video in videos track by video.id')
+    .media(bindonce='video')
+      .media-left.media-top
+        a(ng-click="play(video.id)")
+          img.thumbnail(bo-src="video.thumbnail")
+      .media-body
+        h4.media-heading(bo-text='item.resource.title || item.resource.slug')
+        p(bo-text='item.resource.conferences.title')

@@ -1,0 +1,40 @@
+@require './bs/variables'
+
+$suggest-item-height = 100px
+$suggest-item-padding = 8px
+$selection-color = lighten($link-color, 90%)
+
+#search-suggest
+  left: 50%
+  margin-left: -25%
+  $border-style = 1px solid rgba(39, 41, 43, 0.15)
+  $border-radius = .2857rem
+  position: fixed
+  z-index: 9999
+  background-color: white
+  width: 50%
+  max-width: 700px
+  border-top: none
+  border-left: $border-style
+  border-right: $border-style
+  border-bottom: $border-style
+  border-bottom-left-radius: $border-radius
+  border-bottom-right-radius: $border-radius
+  max-height: 80%
+  overflow-y: scroll
+  overflow-x: hidden
+  & > ul
+    padding: 0
+    margin: 0
+    & > li
+      max-height: $suggest-item-height
+      cursor: pointer
+      padding: $suggest-item-padding
+      list-style-type: none
+      &:hover
+        background-color: $selection-color
+      .thumbnail
+        background-color: transparent
+        max-height: $suggest-item-height - (2 * $suggest-item-padding)
+        border: none
+        border-radius: none

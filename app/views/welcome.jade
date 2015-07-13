@@ -12,6 +12,7 @@ html(lang='en')
   body.welcome-page(ng-app='confur' ng-controller='MainCtrl' ng-cloak=true ng-jq='jQuery')
     //(ng-controller='WelcomeCtrl' ng-cloak=true)
     .wrapper
+      .logo
       .wrapper-inner
         .cover-container
           //-.masthead.clearfix
@@ -32,6 +33,6 @@ html(lang='en')
           .welcome-footer.text-center
             .inner
               p.h4.font.advent
-                a(href='#') Take a tour
+                a(href='/videos' target='_self') Skip
     script(src='/assets/vendor.js')
     script(src='/assets/application.js')

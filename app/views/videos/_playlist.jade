@@ -1,0 +1,30 @@
+.playlist
+  .row
+    .col-xs-9
+      .video-show
+        .video-item
+          ng-videojs(video="nowPlaying" play-next="playNext()")
+          .details
+            h3 {{ nowPlaying.title }}
+
+    .col-xs-3
+      #playlist
+        a.btn(href='javascript:;' ng-click='playPrev()')
+          i.material-icon.md-dark skip_previous
+        a.btn(href='javascript:;' ng-click='playNext()')
+          i.material-icon.md-dark skip_next
+        a.btn(href='javascript:;' ng-click='shuffle = !shuffle' ng-class='{ active: shuffle }')
+          i.material-icon.md-dark shuffle
+        a.btn(href='javascript:;' ng-click='repeat = !repeat' ng-class='{ active: repeat }')
+          i.material-icon.md-dark repeat
+        ul
+          li(ng-repeat='video in videos track by video.id' bindonce='video' ng-class='{ "active": video.id == nowPlaying.id }' ng-click="play(video.id)")
+            .media
+              .media-left.media-top
+                img.thumbnail(bo-src='video.thumbnail')
+              .media-body
+                p(bo-text='video.title')
+            //-.thumbnail.video-item
+              //-i.play.material-icon.md-light play_circle_filled
+              //-.details
+                //-p(bo-text='video.conference_slug')

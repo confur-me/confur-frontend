@@ -1,0 +1,10 @@
+div(ng-repeat='conference in conferences track by conference.slug')
+  .conference-item
+    .thumbnail
+      a(ng-href="/conferences/{{ conference.id }}")
+        img(ng-src='{{ conference.thumbnail }}')
+        i.play.material-icon.md-light play_circle_filled
+      .details
+        h4 {{ conference.title }}
+        p
+          a(ng-href="/conferences/{{ conference.conference_slug }}") {{ conference.conference.title }}

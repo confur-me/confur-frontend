@@ -10,7 +10,7 @@ html
 body
   //margin-bottom: $footer-height
   & > .container
-    padding-top: $header-height
+    padding-top: ($header-height + 20px)
 
 .footer
   position: absolute
@@ -32,3 +32,11 @@ body
 @import "welcome"
 @import "buttons"
 @import "videos"
+@import "search"
+
+.video-js
+  width: 100% !important
+  min-height: 500px !important
+  .vfs-tech
+    height: auto !important
+    position: relative !important

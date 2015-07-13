@@ -8,13 +8,28 @@ nav.navbar.navbar-default.navbar-fixed-top
         span.icon-bar
       a.navbar-brand(href="/" target="_self")
         .logo
-      #search-form
-        .form-group-lg
-          .input-group
-            input(type="text" class="form-control")
-            span.input-group-btn
-              button.btn.btn-primary.btn-lg(type="submit")
-                | search
+      #search-form(ng-controller="SearchFormCtrl")
+        form(action="/search" method="GET")
+          .form-group-lg
+            .input-group
+              input(type="text" class="form-control" name="q" ng-model="query" autocomplete="off")
+              //ng-blur="cancel()")
+              span.input-group-btn
+                button.btn.btn-primary.btn-lg(type="submit")
+                  | search
+        #search-suggest(ng-show="suggest.length > 0")
+          ul
+            li(
+              ng-repeat="item in suggest"
+              ng-click='$location.path("/"+item.type+"s/"+( item.resource.id || item.resource.slug )); cancel()')
+              .media
+                .media-left.media-top(ng-if="item.resource.thumbnail")
+                  a(ng-href="/{{ item.type }}s/{{ item.resource.id || item.resource.slug }}")
+                    img.thumbnail(ng-show="item.resource.thumbnail" ng-src="{{ item.resource.thumbnail }}")
+                .media-body
+                  h4.media-heading {{ item.resource.title || item.resource.slug }}
+                  | {{ item.resource.conferences.title }}
+        //-ng-include(src='"/templates/search/_suggest.html"')
     //-#navbar.collapse.navbar-collapse
       //-ul.nav.navbar-nav
         //-li.active

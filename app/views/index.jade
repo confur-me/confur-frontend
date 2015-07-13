@@ -11,11 +11,11 @@ html(lang='en')
     base(href='/')
   body(ng-app='confur' ng-controller='MainCtrl' ng-cloak=true ng-jq='jQuery')
     ng-include(src='"/templates/main/_header.html"')
-    .container
-      .row
-        .col-md-9(ng-view ng-cloak=true)
-        .col-md-3(ng-cloak=true)
-          ng-include(src='"/templates/main/_sidebar.html"')
+    .container(ng-view ng-cloak=true)
+      //-.row
+        //-.col-md-9
+        //-.col-md-3(ng-cloak=true)
+          //-ng-include(src='"/templates/main/_sidebar.html"')
     //-ng-include(src='"/templates/main/_footer.html"')
     script(src='/assets/vendor.js')
     script(src='/assets/application.js')
