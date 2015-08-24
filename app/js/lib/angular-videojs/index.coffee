@@ -28,8 +28,7 @@ Angular
           $(el).html(playerTemplate)
           player = videojs(playerEl(),
             preload: 'auto'
-            #autoplay: true,
-            autoplay: false,
+            autoplay: true
             controls: true
             techOrder: ["youtube"]
             src: scope.video.url
