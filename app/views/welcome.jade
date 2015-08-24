@@ -10,7 +10,6 @@ html(lang='en')
     title WELCOME
     base(href='/')
   body.welcome-page(ng-app='confur' ng-controller='MainCtrl' ng-cloak=true ng-jq='jQuery')
-    //(ng-controller='WelcomeCtrl' ng-cloak=true)
     .wrapper
       .logo
       .wrapper-inner
@@ -19,22 +18,21 @@ html(lang='en')
             //-.inner
               //-h3.masthead-brand Cover
 
-          .inner.cover.text-left
+          .inner.cover.text-left(ng-controller='WelcomeCtrl')
             p.h4 Yep, someone has finally done it.
             p.h1
-              | Here are the code & design videos from the conferences all over the world.
-              br
+              | Here are videos from the conferences all over the world.
               | Aggregated in one spot, for your pleasure.
             p.lead.font.advent.text-center
-              a(href="/videos" target="_self" class="btn btn-lg btn-primary btn-transparent") skip
+              a(href="#" ng-click="welcome()" class="btn btn-lg btn-primary btn-transparent") Proceed
             //-p.lead.font.advent.text-center
               //-a(href="/videos" target="_self" class="btn btn-lg btn-transparent") log in
               //-| or&nbsp;
               //-a(href="/videos" target="_self" class="btn btn-lg btn-primary btn-transparent") Sign up for 30 day trial
 
-          .welcome-footer.text-center
-            .inner
-              p.h4.font.advent
-                a(href='/videos' target='_self') Skip!!!111
+          //-.welcome-footer.text-center
+            //-.inner
+              //-p.h4.font.advent
+                //-a(href='/videos' target='_self') Skip!!!111
     script(src='/assets/vendor.js')
     script(src='/assets/application.js')

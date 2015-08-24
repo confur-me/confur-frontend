@@ -32,6 +32,7 @@ App = Angular
     require('angular-sanitize'),
     require('angular-route'),
     require('angular-animate'),
+    require('angular-cookies'),
     'angular-loading-bar',
     'angular-confur',
     'angular-truncate',
