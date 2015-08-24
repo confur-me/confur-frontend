@@ -1,0 +1,13 @@
+ul.list.conferences-list
+  li.item.conference-item(ng-repeat="conference in conferences track by conference.slug" bindonce="conference")
+    .media
+      .media-left.media-top
+        .thumbnail
+          a(bo-href="'/conferences/' + conference.slug" bo-html="conference.thumbnailTag()")
+      .media-body
+        .media-heading
+          h4
+            a(bo-href="'/conferences/' + conference.slug" bo-text="conference.title")
+        p
+          span(bo-text='conference.videos_count')
+          | &nbsp;videos

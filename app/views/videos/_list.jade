@@ -1,18 +1,12 @@
-.videos-list.row(ng-if='!nowPlaying')
-  .col-xs-12.col-sm-6.col-md-4(ng-repeat='video in videos track by video.id' )
-    .video-item(bindonce="video")
-      //-.embed-responsive.embed-responsive-16by9(ng-show='playingVideoId == video.id')
-        //-iframe.embed-responsive-item(bo-src="trustSrc(video.embedSrc())")
-
-      .thumbnail
-        a(ng-click="play(video.id)")
-          img(bo-src='video.thumbnail' bo-alt='video.title')
-          //-img(ng-src='http://admin.confur.local/miniramp.jpg')
-          i.play.material-icon.md-light play_circle_filled
-      .details
-        h4(bo-text='video.title')
-        p
-          a(bo-href="'/conferences/' + video.conference_slug" bo-text='video.conference.title')
-        p(confur-video-tags="video.id")
+.list.videos-list(ng-if='!nowPlaying')
+  .item.video-item(ng-repeat='video in videos track by video.id' bindonce='video')
+    .thumbnail
+      a(ng-click="play(video.id)")
+        div(bo-html='video.thumbnailTag()')
+        i.play.material-icon.md-light play_circle_filled
+    .details
+      h4(bo-text='video.title')
+      confcrumbs(conference='video.conference' event='video.event')
+      confur-tags(tags="video.tags" limit=5)
 
 ng-include(src="'/templates/videos/_playlist.html'" ng-if='nowPlaying')

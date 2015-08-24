@@ -1,14 +1,14 @@
-{{ conference }}
 .conference-show
-  .conference-item
-    .details
-      h4 {{ conference.title }}
-
-.events(ng-if='events.length > 0' ng-controller='ListEventsCtrl')
   .page-header
-    h1 Events
-  ng-include(src='"/templates/events/list.html"')
-.videos(ng-if='videos.length > 0' ng-controller='ListVideosCtrl')
-  .page-header
-    h1 Videos
-  ng-include(src='"/templates/videos/_list.html"')
+    h1
+      i.material-icon.md-dark school
+      span(ng-bind='conference.title')
+  .details(ng-bind="conference.description")
+  .events(ng-if='events.length > 0')
+    div(ng-controller='ListEventsCtrl')
+      h2 Events
+      ng-include(src='"/templates/events/_grid.html"')
+  .videos(ng-controller='ListVideosCtrl')
+    div(ng-show='videos.length > 0')
+      h2 Videos
+      ng-include(src='"/templates/videos/_grid.html"')

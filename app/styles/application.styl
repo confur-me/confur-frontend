@@ -1,7 +1,6 @@
 @require "variables"
 @import "fonts"
 @import "icons"
-@import "_header"
 
 html
   position: relative
@@ -29,14 +28,20 @@ body
   top: $padding-top
   left: 7px
 
+h1, h2, h3, h4, h5
+  & > a, & > a:hover
+    color: $text-color
+
+.page-header
+  & > h1 > i
+    font-size: 36px
+    margin-right: 10px
+
+@import "lists"
+@import "_header"
+@import "_sidebar"
 @import "welcome"
 @import "buttons"
 @import "videos"
 @import "search"
-
-.video-js
-  width: 100% !important
-  min-height: 500px !important
-  .vfs-tech
-    height: auto !important
-    position: relative !important
+@import "tags"

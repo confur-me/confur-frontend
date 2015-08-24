@@ -1,12 +1,13 @@
-.events(ng-if='events.length > 0')
+.events(ng-if='events.length > 0' ng-controller='ListEventsCtrl')
   .page-header
     h1 Events
-  ng-include(src='"/templates/events/list.html"')
+  ng-include(src='"/templates/events/_grid.html"')
 .conferences(ng-if='conferences.length > 0')
-  .page-header
-    h1 Conferences
-  ng-include(src='"/templates/conferences/list.html"')
+  div(ng-controller='ListConferencesCtrl')
+    .page-header
+      h1 Conferences
+  ng-include(src='"/templates/conferences/_grid.html"')
 .videos(ng-if='videos.length > 0' ng-controller='ListVideosCtrl')
   .page-header
     h1 Videos
-  ng-include(src='"/templates/videos/_list.html"')
+  ng-include(src='"/templates/videos/_grid.html"')

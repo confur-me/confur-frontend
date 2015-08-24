@@ -28,8 +28,8 @@ Angular
           $(el).html(playerTemplate)
           player = videojs(playerEl(),
             preload: 'auto'
-            autoplay: true,
-            # autoplay: false,
+            #autoplay: true,
+            autoplay: false,
             controls: true
             techOrder: ["youtube"]
             src: scope.video.url
@@ -39,9 +39,7 @@ Angular
                 #namespace: 'confur'
           )
           player.on 'ended', ->
-            console.log scope
             scope.playNext()
-            #console.log('awww...over so soon?')
           player
 
       scope.$watch 'video', (newVideo) ->
@@ -51,5 +49,3 @@ Angular
             initPlayer()
         else
           initPlayer()
-
-#data-setup='{ "techOrder": ["youtube"], "src": "http://www.youtube.com/watch?v=xjS6SftYQaQ" }'

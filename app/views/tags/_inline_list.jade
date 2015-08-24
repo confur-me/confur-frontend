@@ -1,0 +1,5 @@
+div(ng-if='tags.length > 0')
+  i.material-icon.tag-icon local_offer
+  ul.tags
+    li.tag(ng-repeat="tag in tags | limitTo:limit" bindonce='tag')
+      a(bo-href="'/tags/' + tag" bo-text='tag')

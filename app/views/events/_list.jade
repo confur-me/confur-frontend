@@ -1,0 +1,12 @@
+ul.list.events-list
+  li.item.event-item(ng-repeat="event in events track by event.id" bindonce="event")
+    .media
+      .media-left.media-top
+        a(bo-href="'/events/' + event.id")
+          .thumbnail(bo-html="event.thumbnailTag()")
+      .media-body
+        .media-heading
+          h4
+            a(bo-href="'/events/' + event.id" bo-text="event.title")
+        p(bo-if="!conference")
+          a(bo-href="'/conferences/' + event.conference_slug" bo-text="event.conference.title")

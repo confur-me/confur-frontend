@@ -1,22 +1,50 @@
 'use strict'
 
-module.exports = ($scope, $location, Search) ->
-  $scope.results = []
-  $scope.videos = []
-  $scope.events = []
-  $scope.conferences = []
+module.exports = ($scope, $location, $q, Search, Video, Conference, Event, Tag) ->
+  init = ->
+    deferredEvents      = $q.defer()
+    deferredConferences = $q.defer()
+    deferredTags        = $q.defer()
+    deferredVideos      = $q.defer()
 
-  query = $location.$$search.q
-  console.log query
+    $scope.events      = events      = []
+    $scope.conferences = conferences = []
+    $scope.videos      = videos      = []
+    $scope.tags        = tags        = []
 
-  if query && query != ""
-    Search.search(query).then (results) ->
-      $scope.results = results.data
-      for item in $scope.results
-        switch item.type
-          when 'video'
-            $scope.videos.push item.resource
-          when 'conference'
-            $scope.conferences.push item.resource
-          when 'event'
-            $scope.events.push item.resource
+    $scope.events.$promise      = deferredEvents.promise
+    $scope.conferences.$promise = deferredConferences.promise
+    $scope.videos.$promise      = deferredVideos.promise
+    $scope.tags.$promise        = deferredTags.promise
+    $scope.query                = $location.$$search.q
+
+    $scope.events.$promise.then      (items) -> $scope.events      = items
+    $scope.conferences.$promise.then (items) -> $scope.conferences = items
+    $scope.videos.$promise.then      (items) -> $scope.videos      = items
+    $scope.tags.$promise.then        (items) -> $scope.tags        = items
+
+    resolvePromises = ->
+      deferredEvents.resolve(events)
+      deferredConferences.resolve(conferences)
+      deferredVideos.resolve(videos)
+      deferredTags.resolve(tags)
+
+    if $scope.query && $scope.query != ""
+      results = Search.search(q: $scope.query)
+      results.$promise.then (results) ->
+        console.log results
+        for item in results
+          switch item.type
+            when 'video'
+              videos.push new Video(item.resource)
+            when 'conference'
+              conferences.push new Conference(item.resource)
+            when 'event'
+              events.push new Event(item.resource)
+            when 'tag'
+              tags.push new Tag(item.resource)
+        resolvePromises()
+    else
+      resolvePromises()
+
+  init()

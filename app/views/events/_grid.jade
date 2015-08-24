@@ -1,0 +1,9 @@
+.grid.events-list.row
+  .col-xs-12.col-sm-4.col-md-4.col-lg-3(ng-repeat="event in events track by event.id")
+    .item.event-item(bindonce="event")
+      a(bo-href="'/events/' + event.id")
+        .thumbnail(bo-html="event.thumbnailTag()")
+      .details
+        h4(bo-text="event.title")
+        p(bo-if="!conference")
+          a(bo-href="'/conferences/' + event.conference_slug" bo-text="event.conference.title")

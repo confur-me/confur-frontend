@@ -1,5 +1,6 @@
 'use strict'
 
 module.exports = ($scope, $routeParams, Video) ->
-
-  $scope.video = Video.get(id: $routeParams.id)
+  console.log $routeParams.id
+  $scope.video = Video.find($routeParams.id)
+  console.log $scope.video

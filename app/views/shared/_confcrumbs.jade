@@ -1,0 +1,5 @@
+ul.confcrumbs(bindonce='conference')
+  li
+    a(bo-href="'/conferences/' + conference.slug" bo-text="conference.title")
+  li(bo-if='event' bindonce='event')
+    a(bo-href="'/events/' + event.id" bo-text="event.title")

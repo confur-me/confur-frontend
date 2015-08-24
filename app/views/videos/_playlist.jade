@@ -6,25 +6,49 @@
           ng-videojs(video="nowPlaying" play-next="playNext()")
           .details
             h3 {{ nowPlaying.title }}
+            confur-tags(tags='nowPlaying.tags')
+            confcrumbs(conference='nowPlaying.conference' event='nowPlaying.event')
 
     .col-xs-3
-      .toolbar
-        a.btn(href='javascript:;' ng-click='playPrev()')
-          i.material-icon.md-dark skip_previous
-        a.btn(href='javascript:;' ng-click='playNext()')
-          i.material-icon.md-dark skip_next
-        a.btn(href='javascript:;' ng-click='shuffle = !shuffle' ng-class='{ active: shuffle }')
-          i.material-icon.md-dark shuffle
-        a.btn(href='javascript:;' ng-click='repeat = !repeat' ng-class='{ active: repeat }')
-          i.material-icon.md-dark repeat
+      //-| shuffle: {{ shuffle }}
+      //-| mute: {{ mute }}
+      .btn-toolbar(role='toolbar')
+        .btn-group
+          a.btn(href='javascript:;' ng-click='playPrev()')
+            i.material-icon.md-dark skip_previous
+          //-a.btn(href='javascript:;' ng-click='pause()')
+            //-i.material-icon.md-dark pause
+          a.btn(href='javascript:;' ng-click='playNext()')
+            i.material-icon.md-dark skip_next
+          //-a.btn(href='javascript:;' ng-click='shuffle = !shuffle' ng-class='{ active: shuffle }')
+            //-i.material-icon.md-dark shuffle
+          //-a.btn(href='javascript:;' ng-click='repeat = !repeat' ng-class='{ active: repeat }')
+            //-i.material-icon.md-dark repeat
+          //-a.btn(href='javascript:;' ng-click='mute = !mute')
+            //-i.material-icon.md-dark(ng-show='mute') volume_off
+            //-i.material-icon.md-dark(ng-show='!mute') volume_up
       #playlist(ng-init='initScroll()')
-        ul
-          li(ng-repeat='video in videos track by video.id' bindonce='video' ng-class='{ "active": video.id == nowPlaying.id }' ng-click="play(video.id)")
+        //-bgf-pagination(
+          //-collection='videos'
+          //-template-url='/templates/shared/_pagination.html'
+          //-url='videosUrl'
+          //-transform-response='paginateVideos'
+          //-passive='true'
+          //-size='sm'
+          //-page='$parent.$parent.page'
+        //-)
+        ul.list.videos-list
+          li.item.video-item(ng-repeat='video in videos track by video.id' bindonce='video' ng-class='{ "active": video.id == nowPlaying.id }' ng-click="play(video.id)" bo-id='"video-"+video.id')
             .media
               .media-left.media-top
-                img.thumbnail(bo-src='video.thumbnail')
+                .thumbnail
+                  img(bo-src='video.thumbnail')
+                  i.play.material-icon.md-light play_circle_filled
+                  i.playing.material-icon.md-light play_arrow
               .media-body
-                p(bo-text='video.title')
+                p(bo-text='video.title | truncate:30')
+                confcrumbs(conference='video.conference' event='video.event')
+                confur-tags(tags='video.tags' limit=2)
             //-.thumbnail.video-item
               //-i.play.material-icon.md-light play_circle_filled
               //-.details

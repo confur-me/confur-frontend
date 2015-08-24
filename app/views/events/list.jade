@@ -1,11 +1,11 @@
-div(ng-repeat='event in events track by event.id')
-  .event-item
+div(ng-repeat="event in events track by event.id")
+  .event-item(bindonce="event")
     .thumbnail
-      a(ng-href="/events/{{ event.id }}")
-        img(ng-src='{{ event.thumbnail }}')
+      a(bo-href="'/events/' + event.id")
+        img(bo-src="event.thumbnail")
         i.play.material-icon.md-light play_circle_filled
       .details
-        h4 {{ event.title }}
-        p
-          a(ng-href="/conferences/{{ event.conference_slug }}") {{ event.conference.title }}
+        h4(bo-text="event.title")
+        p(bo-if="!conference")
+          a(bo-href="'/conferences/' + event.conference_slug" bo-text="event.conference.title")
         p(confur-event-tags="event.id")

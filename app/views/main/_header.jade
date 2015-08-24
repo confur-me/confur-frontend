@@ -8,27 +8,29 @@ nav.navbar.navbar-default.navbar-fixed-top
         span.icon-bar
       a.navbar-brand(href="/" target="_self")
         .logo
-      #search-form(ng-controller="SearchFormCtrl")
+      #search-form(ng-controller="SuggestCtrl")
         form(action="/search" method="GET")
           .form-group-lg
             .input-group
-              input(type="text" class="form-control" name="q" ng-model="query" autocomplete="off")
-              //ng-blur="cancel()")
+              input(type="text" class="form-control" name="q" ng-model="query" autocomplete="off" placeholder="put your search phrase here" focus="true" ng-model-options='{ updateOn: "default", debounce: {"default": 300} }' ng-keyup='$event.keyCode == 27 && cancel()')
               span.input-group-btn
                 button.btn.btn-primary.btn-lg(type="submit")
                   | search
-        #search-suggest(ng-show="suggest.length > 0")
-          ul
-            li(
-              ng-repeat="item in suggest"
-              ng-click='$location.path("/"+item.type+"s/"+( item.resource.id || item.resource.slug )); cancel()')
+        #search-suggest(ng-show="suggest.length > 0" ng-init='initSearch()' ng-click='cancel()')
+          ul.list
+            li.item.suggest-item(ng-repeat="item in suggest" bindonce="item")
               .media
-                .media-left.media-top(ng-if="item.resource.thumbnail")
-                  a(ng-href="/{{ item.type }}s/{{ item.resource.id || item.resource.slug }}")
-                    img.thumbnail(ng-show="item.resource.thumbnail" ng-src="{{ item.resource.thumbnail }}")
+                .media-left.media-top
+                  a(bo-href="item.showPath()" ng-click="cancel()")
+                    .thumbnail(bo-html="item.resource.thumbnailTag()")
                 .media-body
-                  h4.media-heading {{ item.resource.title || item.resource.slug }}
-                  | {{ item.resource.conferences.title }}
+                  .media-heading
+                    a(bo-href="item.showPath()" ng-click="cancel()")
+                      h4.media-heading(bo-html="(item.resource.title || item.resource.slug) | highlight:query")
+                  div(ng-if='item.type == "video"')
+                    confcrumbs(conference='item.resource.conference' event='item.resource.event')
+                    confur-tags(tags='item.resource.tags' limit=5)
+                  //-p(bo-text="item.resource.conference.title")
         //-ng-include(src='"/templates/search/_suggest.html"')
     //-#navbar.collapse.navbar-collapse
       //-ul.nav.navbar-nav

@@ -1,0 +1,19 @@
+@require './bs/variables'
+
+.tags
+  ul&
+    padding: 0
+    margin: 0
+    & > li
+      list-style-type: none
+      display: inline-block
+      & + li
+        margin-left: 10px
+
+.tag-icon
+  cursor: default
+  color: $gray-light
+  float: left
+  font-size: 14px
+  margin-right: 5px
+  padding-top: 4px

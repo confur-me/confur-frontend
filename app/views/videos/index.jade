@@ -1,7 +1,26 @@
-//-.page-header
-  //-h1 Latest videos
 .row
   div(ng-class='{ "col-md-9": !nowPlaying, "col-md-12": nowPlaying }')
-    ng-include(src='"/templates/videos/_list.html"')
+    //-bgf-pagination(
+      //-collection='videos'
+      //-template-url='/templates/shared/_pagination.html'
+      //-url='videosUrl'
+      //-transform-response='paginateVideos'
+      //-page='page'
+      //-perPage='perPage'
+    //-)
+    //-a(href="" ng-click="checkPage()") Check page
+    //-.grid.videos-list.row
+      //-.col-xs-12.col-sm-4.col-md-4.col-lg-3(ng-repeat='video in videos track by video.id' )
+        //-.item.video-item(bindonce="video")
+          //-a(ng-click="play(video.id)" href="javascript:;")
+            //-.thumbnail
+              //-img(bo-src='video.thumbnail')
+              //-i.play.material-icon.md-light play_circle_filled
+          //-.details
+            //-h4
+              //-a(ng-click="play(video.id)" href="javascript:;" bo-text='video.title')
+            //-confcrumbs(conference='video.conference' event='video.event')
+            //-confur-tags(tags="video.tags" limit=5)
+    ng-include(src='"/templates/videos/_grid.html"')
   .col-md-3(ng-if='!nowPlaying')
     ng-include(src='"/templates/main/_sidebar.html"')

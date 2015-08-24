@@ -1,18 +1,9 @@
 .sidebar
-  .page-header
-    h2 Coming up
-    .row(ng-controller='ListEventsCtrl')
-      .col-xs-12.col-sm-6.col-md-12(ng-repeat='event in events track by event.id')
-        .thumbnail.event-item(bindonce='event')
-          img(bo-src='event.thumbnail')
-          .details
-            h4(bo-text='event.title')
-            p(bo-text='event.conference_slug')
-  .page-header
-    h2 Latest conferences
-    .row(ng-controller='ListConferencesCtrl')
-      .col-xs-12.col-sm-6.col-md-12(ng-repeat='conference in conferences track by conference.slug')
-        .thumbnail.conference-item(bindonce='conference')
-          img(bo-src='conference.thumbnail')
-          .details
-            h4(bo-text='conference.title')
+  div(ng-controller='ListEventsCtrl')
+    div(ng-if='events.length > 0')
+      h2 Coming up
+      ng-include(src='"/templates/events/_list.html"')
+  div(ng-controller='ListConferencesCtrl')
+    div(ng-if='conferences.length > 0')
+      h2 Recent conferences
+      ng-include(src='"/templates/conferences/_list.html"')

@@ -1,10 +1,60 @@
 @require './bs/variables'
 
 $selection-color = lighten($link-color, 90%)
+$playlist-play-button-width = 48px
+$list-play-button-width = 96px
+
+.video-js
+  width: 100% !important
+  min-height: 500px !important
+  .vfs-tech
+    height: auto !important
+    position: relative !important
+
+.grid.videos-list
+  .video-item
+    min-height: 350px
+    margin-bottom: 40px
+    .thumbnail
+      &, & > img
+        $min-width = 212px
+        min-width = $min-width
+        min-height: (($min-width * 9) / 16)
+      .material-icon
+        font-size: $list-play-button-width
+        margin-top: -($list-play-button-width / 2)
+        margin-left: -($list-play-button-width / 2)
+      .play
+        cursor: pointer
+        opacity: .5
+        &:hover
+          opacity: .9
+      .playing
+        display: none
+
+#playlist
+  .video-item
+    .thumbnail
+      .playing
+        display: none
+    .thumbnail
+      &, & > img
+        width: 100px
+      .material-icon
+        font-size: $playlist-play-button-width
+        margin-top: -($playlist-play-button-width / 2)
+        margin-left: -($playlist-play-button-width / 2)
+      .play
+        cursor: pointer
+        opacity: 0
+        &:hover
+          opacity: .9
+    &.active
+      .thumbnail
+        .playing
+          display: block
 
 .video-item
-  min-height: 350px
-  margin-bottom: 40px
   .thumbnail
     border: none
     padding: 0
@@ -13,29 +63,15 @@ $selection-color = lighten($link-color, 90%)
     margin: 0
     position: relative
     background-color: $gray-lighter
-    img
-      $min-width = 212px
-      min-width = $min-width
-      min-height: (($min-width * 9) / 16)
+    .material-icon
+      position: absolute
+      z-index: 10
+      top: 50%
+      left: 50%
+      transition: opacity .3s
+      text-shadow: none
   .details
     padding-top: 6px
-  .play
-    $play-button-width = 120px
-    //width: 100%
-    //height: 100%
-    position: absolute
-    font-size: $play-button-width
-    opacity: .5
-    z-index: 10
-    top: 50%
-    left: 50%
-    transition: opacity .3s
-    cursor: pointer
-    margin-top: -($play-button-width / 2)
-    margin-left: -($play-button-width / 2)
-    text-shadow: none
-    &:hover
-      opacity: .9
 
 .vjs-big-play-button
   display: none !important
@@ -58,3 +94,12 @@ $selection-color = lighten($link-color, 90%)
         padding: 0 !important
         margin: 0 !important
         max-width: 100px
+
+.confcrumbs
+  padding: 0
+  list-style: none;
+  & > li
+    display: inline-block
+    & + li:before
+      content: '/\00a0'
+      padding: 0 5px

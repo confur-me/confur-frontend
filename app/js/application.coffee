@@ -18,6 +18,12 @@ require('./lib/angular-confur')
 require('./lib/angular-truncate')
 require('./lib/angular-videojs')
 require('./lib/location-change-hack')
+require('./lib/angular-focus')
+require('./lib/angular-highlight-phrase')
+require('./lib/confur-tags')
+require('./lib/confur-confcrumbs')
+require('./lib/confur-pagination')
+require('./lib/paginate-anything')
 
 App = Angular
   .module('confur', [
@@ -30,7 +36,13 @@ App = Angular
     'angular-confur',
     'angular-truncate',
     'angular-videojs',
-    'pasvaz.bindonce'
+    'pasvaz.bindonce',
+    'angular-focus',
+    'angular-highlight-phrase',
+    'confur-tags',
+    'confur-pagination',
+    'confur-confcrumbs',
+    'bgf.paginateAnything'
   ])
 
 App
@@ -52,3 +64,4 @@ require('./welcome')
 require('./conferences')
 require('./videos')
 require('./events')
+require('./tags')

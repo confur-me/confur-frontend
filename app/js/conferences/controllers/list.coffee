@@ -3,5 +3,5 @@
 _ = require('lodash')
 
 module.exports = ($scope, Conference) ->
-  Conference.query().$promise.then (confs) ->
-    $scope.conferences = confs
+  unless $scope.conferences?.length > 0
+    $scope.conferences = Conference.query(shuffle: 'true')
