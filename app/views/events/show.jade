@@ -4,6 +4,7 @@
       i.material-icon.md-dark event
       span(ng-bind="event.title")
   .details(ng-bind="event.description")
-  .videos(ng-if='videos.length > 0' ng-controller='ListVideosCtrl')
-    h2 Videos
-    ng-include(src='"/templates/videos/_grid.html"')
+  .videos(ng-controller='ListVideosCtrl')
+    div(ng-show='videos.length > 0')
+      h2 Videos
+      ng-include(src='"/templates/videos/_grid.html"')

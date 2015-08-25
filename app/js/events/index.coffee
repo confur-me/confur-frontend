@@ -11,7 +11,7 @@ App = require('angular')
       templateUrl: '/templates/events/index.html'
       controller: 'ListEventsCtrl'
 
-    $routeProvider.when '/events/:id',
+    $routeProvider.when '/events/:eventId',
       templateUrl: '/templates/events/show.html'
       controller: 'ShowEventCtrl'
   ]

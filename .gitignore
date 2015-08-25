@@ -32,3 +32,5 @@ npm-debug.log
 semantic/src/definitions/
 semantic/src/themes/
 semantic/dist/
+
+app/styles/bs/original_variables.styl
