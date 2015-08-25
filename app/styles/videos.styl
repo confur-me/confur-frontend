@@ -97,9 +97,11 @@ $list-play-button-width = 96px
 
 .confcrumbs
   padding: 0
-  list-style: none;
+  list-style: none
+  white-space: nowrap
+  overflow: hidden
+  text-overflow: ellipsis
   & > li
     display: inline-block
     & + li:before
       content: '/\00a0'
-      padding: 0 5px
