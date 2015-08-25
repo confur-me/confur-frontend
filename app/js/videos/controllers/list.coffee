@@ -35,11 +35,18 @@ module.exports = ($scope, $routeParams, $location, $q, location, Video) ->
       else
         0
 
-    $scope.$watch 'page', (page) ->
-      if page == 0
-        location.skipReload().search('page', undefined)
-      else
-        location.skipReload().search('page', page + 1)
+    $scope.$watch 'page', (page, oldPage) ->
+      pageParam =
+        if page > 0
+          page + 1
+        else
+          null
+
+      if $location.search().page
+        if parseInt($location.search().page, 10) != pageParam
+          location.skipReload().search('page', pageParam)
+      else if page > 0
+        location.skipReload().search('page', pageParam)
 
     $scope.$on '$locationChangeSuccess', ->
       page = $location.search().page - 1
