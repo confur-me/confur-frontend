@@ -1,5 +1,10 @@
-ul.confcrumbs(bindonce='conference')
+//-ul.confcrumbs(bindonce='conference')
+  //-li
+    //-a(bo-href="'/conferences/' + conference.slug" bo-text="conference.title")
+  //-li(bo-if='event' bindonce='event')
+    //-a(bo-href="'/events/' + event.id" bo-text="event.title")
+ul.confcrumbs
   li
-    a(bo-href="'/conferences/' + conference.slug" bo-text="conference.title")
-  li(bo-if='event' bindonce='event')
-    a(bo-href="'/events/' + event.id" bo-text="event.title")
+    a(ng-href="/conferences/{{ conference.slug }}" ng-bind="conference.title")
+  li(ng-if='event')
+    a(ng-href="/events/{{ event.id }}" ng-bind="event.title")
