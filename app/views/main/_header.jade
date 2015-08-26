@@ -18,7 +18,7 @@ nav.navbar.navbar-default.navbar-fixed-top
                   | search
         #search-suggest(ng-show="suggest.length > 0" ng-init='initSearch()' ng-click='cancel()')
           ul.list
-            li.item.suggest-item(ng-repeat="item in suggest" bindonce="item" class='{{ item.type }}s-list')
+            li.item.suggest-item(ng-repeat="item in suggest" bindonce="item" bo-class='item.type+"-item"')
               .media
                 .media-left.media-top
                   a(bo-href="item.showPath()" ng-click="cancel()")
