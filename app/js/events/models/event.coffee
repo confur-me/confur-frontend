@@ -1,8 +1,11 @@
 'use strict'
 
+tpl = require('mnml-tpl')
+
 module.exports = ($resource) ->
 
   thumbnailPlaceholder = '<div class="thumbnail-icon"><i class="material-icon">event</i></div>'
+  thumbnailPicture = '<div class="thumbnail-cover" style="background-image: url(:thumbnailUrl)"></div>'
 
   Event =
     $resource '/api/events/:id',
@@ -31,7 +34,9 @@ module.exports = ($resource) ->
 
   Event::thumbnailTag = ->
     if @thumbnail
-      '<img src="'+@thumbnail+'" />'
+      tpl(thumbnailPicture)(thumbnailUrl: @thumbnail)
+    else if @conference?.thumbnail
+      tpl(thumbnailPicture)(thumbnailUrl: @conference.thumbnail)
     else
       thumbnailPlaceholder
 

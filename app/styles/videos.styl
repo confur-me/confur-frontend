@@ -11,6 +11,10 @@ $list-play-button-width = 96px
     height: auto !important
     position: relative !important
 
+.videos-list
+  .thumbnail
+    background-color: black
+
 .grid.videos-list
   .video-item
     min-height: 350px
@@ -37,7 +41,8 @@ $list-play-button-width = 96px
     .thumbnail
       .playing
         display: none
-    .thumbnail
+      .thumbnail-cover
+        background-position: 50%
       &, & > img
         width: 100px
       .material-icon

@@ -1,8 +1,11 @@
 'use strict'
 
+tpl = require('mnml-tpl')
+
 module.exports = ($resource, $location) ->
 
   thumbnailPlaceholder = '<div class="thumbnail-icon"><i class="material-icon">movie</i></div>'
+  thumbnailPicture = '<div class="thumbnail-cover" style="background-image: url(:thumbnailUrl)"></div>'
 
   urls =
     main: '/api/videos/:id'
@@ -59,7 +62,7 @@ module.exports = ($resource, $location) ->
 
   Video::thumbnailTag = ->
     if @thumbnail
-      '<img src="'+@thumbnail+'" />'
+      tpl(thumbnailPicture)(thumbnailUrl: @thumbnail)
     else
       thumbnailPlaceholder
 
