@@ -1,15 +1,15 @@
 .playlist
   .row
-    .col-xs-9
+    .col-xs-8.col-sm-8.col-md-8.col-lg-9
       .video-show
         .video-item
-          ng-videojs(video="nowPlaying" play-next="playNext()")
+          ng-videojs(video="$parent.nowPlaying" play-next="$parent.playNext()")
           .details
             h3 {{ nowPlaying.title }}
             confur-tags(tags='nowPlaying.tags')
             confcrumbs(conference='nowPlaying.conference' event='nowPlaying.event')
 
-    .col-xs-3
+    .col-xs-4.col-sm-4.col-md-4.col-lg-3
       //-| shuffle: {{ shuffle }}
       //-| mute: {{ mute }}
       .btn-toolbar(role='toolbar')

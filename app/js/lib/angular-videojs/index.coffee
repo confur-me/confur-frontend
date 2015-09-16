@@ -18,7 +18,6 @@ Angular
         $(el).children('#player')[0]
 
       destroyOld = ->
-        console.log 'destroying old player'
         if playerEl()
           videojs(playerEl()).dispose()
 
@@ -42,7 +41,7 @@ Angular
           player
 
       scope.$watch 'video', (newVideo) ->
-        return unless scope.video
+        return unless newVideo
         if scope.video.$promise
           scope.video.$promise.then ->
             initPlayer()

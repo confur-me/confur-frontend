@@ -4,6 +4,4 @@
       i.material-icon.md-dark local_offer
       span(ng-bind='tag.slug')
 
-  .videos(ng-controller='ListVideosCtrl')
-    div(ng-show='videos.length > 0')
-      ng-include(src='"/templates/videos/_grid.html"')
+  videos-grid(pagination='true' heading='true')

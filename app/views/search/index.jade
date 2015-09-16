@@ -7,7 +7,5 @@
     .page-header
       h1 Conferences
   ng-include(src='"/templates/conferences/_grid.html"')
-.videos(ng-if='videos.length > 0' ng-controller='ListVideosCtrl')
-  .page-header
-    h1 Videos
-  ng-include(src='"/templates/videos/_grid.html"')
+div(ng-if='videos.length > 0')
+  videos-grid(videos='videos' pagination='false' heading='true')

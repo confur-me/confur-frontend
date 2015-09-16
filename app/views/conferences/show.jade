@@ -8,7 +8,4 @@
     div(ng-controller='ListEventsCtrl')
       h2 Events
       ng-include(src='"/templates/events/_grid.html"')
-  .videos(ng-controller='ListVideosCtrl')
-    div(ng-show='videos.length > 0')
-      h2 Videos
-      ng-include(src='"/templates/videos/_grid.html"')
+  videos-grid(pagination='true' heading='true')

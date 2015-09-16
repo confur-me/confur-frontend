@@ -3,16 +3,19 @@
 App = require('angular')
   .module('confur')
   .factory('Video', require('./models/video'))
+  .controller('IndexVideosCtrl', require('./controllers/index'))
   .controller('ListVideosCtrl', require('./controllers/list'))
   .controller('ShowVideoCtrl', require('./controllers/show'))
+  .directive 'videosGrid', require('./directives/videos-grid')
+  .directive 'videosList', require('./directives/videos-list')
   .config ['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->
     $routeProvider.when '/',
       templateUrl: '/templates/videos/index.html'
-      controller: 'ListVideosCtrl'
+      controller: 'IndexVideosCtrl'
 
     $routeProvider.when '/videos',
       templateUrl: '/templates/videos/index.html'
-      controller: 'ListVideosCtrl'
+      controller: 'IndexVideosCtrl'
       reloadOnSearch: false
 
     $routeProvider.when '/videos/:id',

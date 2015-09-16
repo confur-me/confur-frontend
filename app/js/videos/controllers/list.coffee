@@ -5,12 +5,14 @@ Ps  = require('perfect-scrollbar')
 $   = require('jquery')
 tpl = require('mnml-tpl')
 
-
 module.exports = ($scope, $routeParams, $location, $q, location, Video) ->
 
-  deferredVideos         = $q.defer()
-  playlistContainer      = angular.element('#playlist')[0]
-  $scope.videos          = []
+  playlistContainer = angular.element('#playlist')[0]
+  deferredVideos    = $q.defer()
+
+  if $scope.videos == undefined
+    $scope.videos = []
+
   $scope.videos.$promise = deferredVideos.promise
   $scope.videos.$promise.then (videos) ->
     $scope.videos = videos
@@ -26,8 +28,12 @@ module.exports = ($scope, $routeParams, $location, $q, location, Video) ->
       $scope.videos = data
     data
 
+  playVideoFromUrl = ->
+    if $location.search().play
+      $scope.play parseInt($location.search().play, 10)
+
   init = ->
-    $scope.nowPlaying      = null
+    $scope.nowPlaying = null
 
     $scope.page =
       if $location.search().page
@@ -68,23 +74,12 @@ module.exports = ($scope, $routeParams, $location, $q, location, Video) ->
       else
         tpl(Video.urls.main)(id: "")+"?shuffle=true"
 
-    #unless $scope.videos
-      #$scope.videos =
-        #if $routeParams.conferenceSlug
-          #Video.byConference(conference_slug: $routeParams.conferenceSlug)
-        #else if $routeParams.eventId
-          #Video.byEvent(event_id: $routeParams.eventId)
-        #else if $routeParams.tag
-          #Video.byTag(tag: $routeParams.tag)
-        #else
-          #Video.query()
-
     if $scope.videos.$promise
       $scope.videos.$promise.then ->
-        $scope.play($location.hash())
+        playVideoFromUrl()
         Ps.update(playlistContainer)
     else
-      $scope.play($location.hash())
+      playVideoFromUrl()
 
   $scope.play = (videoId) ->
     videoId = parseInt(videoId)
@@ -94,8 +89,8 @@ module.exports = ($scope, $routeParams, $location, $q, location, Video) ->
       video.id == videoId
 
     if $scope.nowPlaying
-      console.log "playin " + $scope.nowPlaying.id
-      location.skipReload().hash($scope.nowPlaying.id)
+      location.skipReload().search('play', $scope.nowPlaying.id)
+      $scope.$applyAsync()
       # TODO: scroll to video element
 
     videoItem = $(playlistContainer).find('#video-'+videoId)
@@ -105,23 +100,24 @@ module.exports = ($scope, $routeParams, $location, $q, location, Video) ->
       Ps.update(playlistContainer)
 
   $scope.playNext = ->
-    return $scope.play(_.sample($scope.videos).id) if $scope.shuffle
+    #return $scope.play(_.sample($scope.videos).id) if $scope.shuffle
     videosLength = $scope.videos.length
     return unless videosLength > 0
     idx = nowPlayingIdx()
     idx ||= 0
     idx += 1
-    idx = 0 if idx >= (videosLength - 1) && $scope.repeat
+    idx = 0 if idx >= (videosLength - 1) # && $scope.repeat
     nextVideo = $scope.videos[idx]
     return $scope.play(nextVideo.id) if nextVideo
 
   $scope.playPrev = ->
     return $scope.play(_.sample($scope.videos).id) if $scope.shuffle
     videosLength = $scope.videos.length
+    return unless videosLength > 0
     idx = nowPlayingIdx()
     idx ||= $scope.videos.length
     idx -= 1
-    idx = videosLength - 1 if idx <= 0 && $scope.repeat
+    idx = videosLength - 1 if idx <= 0 # && $scope.repeat
     nextVideo = $scope.videos[idx]
     return $scope.play(nextVideo.id) if nextVideo
 
