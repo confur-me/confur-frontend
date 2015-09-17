@@ -19,7 +19,7 @@ html(lang='en')
       ga('send', 'pageview');
   body.welcome-page(ng-app='confur' ng-controller='MainCtrl' ng-cloak=true ng-jq='jQuery')
     .wrapper
-      .logo
+      .logo(bs-affix=true affix-timeout=1000)
       .wrapper-inner
         .cover-container
           //-.masthead.clearfix
