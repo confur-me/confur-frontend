@@ -1,4 +1,4 @@
-nav#navbar.navbar.navbar-default.navbar-fixed-top(bs-affix=true affix-timeout=2000)
+nav#navbar.navbar.navbar-default.navbar-fixed-top(bs-affix=true affix-timeout=1000)
   .container
     .navbar-header
       button.navbar-toggle.collapsed(type="button" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar")
@@ -9,10 +9,10 @@ nav#navbar.navbar.navbar-default.navbar-fixed-top(bs-affix=true affix-timeout=20
       a.navbar-brand(href="/" target="_self")
         .logo
       #search-form(ng-controller="SuggestCtrl")
-        form(action="/search" method="GET")
+        form(ng-submit='doSearch()')
           .form-group-lg
             .input-group
-              input(type="text" class="form-control" name="q" ng-model="query" autocomplete="off" placeholder="put your search phrase here" focus="true" ng-model-options='{ updateOn: "default", debounce: {"default": 300} }' ng-keyup='$event.keyCode == 27 && cancel()')
+              input(type="text" class="form-control" name="q" ng-model="query" autocomplete="off" placeholder="put your search phrase here" focus="true" ng-model-options='{ updateOn: "default", debounce: {"default": 300} }' ng-keyup='cancel($event)')
               span.input-group-btn
                 button.btn.btn-primary.btn-lg(type="submit")
                   | search
