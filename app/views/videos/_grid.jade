@@ -1,25 +1,26 @@
 div(ng-controller='ListVideosCtrl')
-  .page-header(ng-show='heading')
-    h1 Videos
-  ng-include(src="'/templates/videos/_playlist.html'" ng-show='nowPlaying' autoscroll="")
-  div(ng-show='!nowPlaying')
-    div(ng-if='pagination')
-      bgf-pagination(
-        collection='videos'
-        template-url='/templates/shared/_pagination.html'
-        url='videosUrl'
-        transform-response='paginateVideos'
-        page='$parent.page'
-      )
-    .grid.videos-list.row
-      .col-xs-12.col-sm-4.col-md-4.col-lg-3(ng-repeat='video in videos track by video.id' )
-        .item.video-item(bindonce="video")
-          a(ng-click="play(video.id)" href="javascript:;")
-            .thumbnail
-              img(bo-src='video.thumbnail')
-              i.play.material-icon.md-light play_circle_filled
-          .details
-            h4
-              a(ng-click="play(video.id)" href="javascript:;" bo-text='video.title')
-            confcrumbs(conference='video.conference' event='video.event')
-            confur-tags(tags="video.tags" limit=5)
+  div(ng-show='videos.length > 0')
+    .page-header(ng-show='heading')
+      h1 Videos
+    ng-include(src="'/templates/videos/_playlist.html'" ng-show='nowPlaying' autoscroll="")
+    div(ng-show='!nowPlaying')
+      div(ng-if='pagination')
+        bgf-pagination(
+          collection='videos'
+          template-url='/templates/shared/_pagination.html'
+          url='videosUrl'
+          transform-response='paginateVideos'
+          page='$parent.page'
+        )
+      .grid.videos-list.row
+        .col-xs-12.col-sm-4.col-md-4.col-lg-3(ng-repeat='video in videos track by video.id' )
+          .item.video-item(bindonce="video")
+            a(ng-click="play(video.id)" href="javascript:;")
+              .thumbnail
+                img(bo-src='video.thumbnail')
+                i.play.material-icon.md-light play_circle_filled
+            .details
+              h4
+                a(ng-click="play(video.id)" href="javascript:;" bo-text='video.title')
+              confcrumbs(conference='video.conference' event='video.event')
+              confur-tags(tags="video.tags" limit=5)

@@ -5,9 +5,14 @@
   background-repeat: no-repeat
   background-size: 100%
 
-.navbar
+#navbar
   $border-color = $gray
-  box-shadow: 0 0 19px rgba(red($border-color), blue($border-color), green($border-color), .15)
+  top: -($navbar-height)
+  &.affix, &.affix-top
+    box-shadow: 0 0 19px rgba(red($border-color), blue($border-color), green($border-color), .15)
+    position: fixed
+    top: 0
+  transition: all 0.8s ease
 
 .navbar-brand
   padding-top: (($navbar-height - $logo-height) / 2)

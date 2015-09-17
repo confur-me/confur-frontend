@@ -14,6 +14,7 @@ require('bootstrap-styl/js/carousel')
 
 require('angular-bindonce')
 require('angular-loading-bar')
+require('./lib/angular-bootstrap')
 require('./lib/angular-confur')
 require('./lib/angular-truncate')
 require('./lib/angular-videojs')
@@ -35,6 +36,7 @@ App = Angular
     require('angular-cookies'),
     'angular-loading-bar',
     'angular-confur',
+    'angular-bootstrap',
     'angular-truncate',
     'angular-videojs',
     'pasvaz.bindonce',
