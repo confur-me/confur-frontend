@@ -1,7 +1,7 @@
 .sidebar(bs-affix=true affix-timeout=3000)
   div(ng-controller='ListEventsCtrl')
     div(ng-if='events.length > 0')
-      h2 Coming up
+      h2 Random events
       ng-include(src='"/templates/events/_list.html"')
   div(ng-controller='ListConferencesCtrl')
     div(ng-if='conferences.length > 0')

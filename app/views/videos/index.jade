@@ -1,5 +1,5 @@
 .row
-  div(ng-class='{ "col-md-9": !nowPlaying, "col-md-12": nowPlaying }')
+  div(ng-class='{ "col-md-9": !isPlaying(), "col-md-12": isPlaying() }')
     videos-grid(videos='videos' pagination='true' heading='false')
-  .col-md-3(ng-if='!nowPlaying')
+  .col-md-3(ng-if='!isPlaying()')
     ng-include(src='"/templates/main/_sidebar.html"')

@@ -7,3 +7,6 @@ module.exports = ($scope, $route, $routeParams, $location, $sce) ->
 
   $scope.trustSrc = (src) ->
     $sce.trustAsResourceUrl(src)
+
+  $scope.isPlaying = ->
+    parseInt($location.search().play, 10) > 0
