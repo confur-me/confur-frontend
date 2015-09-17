@@ -13,13 +13,13 @@ $list-play-button-width = 96px
 
 .grid.videos-list
   .video-item
-    min-height: 350px
+    min-height: 230px
     margin-bottom: 40px
     .thumbnail
       &, & > img
         $min-width = 212px
-        min-width = $min-width
-        min-height: (($min-width * 9) / 16)
+        width = $min-width
+        height: (($min-width * 9) / 16)
       .material-icon
         font-size: $list-play-button-width
         margin-top: -($list-play-button-width / 2)

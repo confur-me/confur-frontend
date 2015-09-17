@@ -13,7 +13,7 @@ div(ng-controller='ListVideosCtrl')
           page='$parent.page'
         )
       .grid.videos-list.row
-        .col-xs-12.col-sm-4.col-md-4.col-lg-3(ng-repeat='video in videos track by video.id' )
+        .col-xs-6.col-sm-4.col-md-4.col-lg-3(ng-repeat='video in videos track by video.id' )
           .item.video-item(bindonce="video")
             a(ng-click="play(video.id)" href="javascript:;")
               .thumbnail
