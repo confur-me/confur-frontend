@@ -10,3 +10,6 @@ ul.list.events-list
             a(bo-href="'/events/' + event.id" bo-text="event.title")
         p(bo-if="!conference")
           a(bo-href="'/conferences/' + event.conference_slug" bo-text="event.conference.title")
+        p
+          span(bo-text='event.videos_count')
+          | &nbsp;videos
