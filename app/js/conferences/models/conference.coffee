@@ -16,11 +16,13 @@ module.exports = ($resource) ->
 
   Conference.find = (slug) ->
     conference = Conference.get(slug: slug)
+    console.debug conference.toJSON()
     conference.$promise.then ->
       conference.init()
     conference
 
   Conference::init = ->
+    console.debug @
     # init
 
   Conference::thumbnailTag = ->

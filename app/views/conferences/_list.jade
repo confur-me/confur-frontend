@@ -8,6 +8,10 @@ ul.list.conferences-list
         .media-heading
           h4
             a(bo-href="'/conferences/' + conference.slug" bo-text="conference.title")
-        p
-          span(bo-text='conference.videos_count')
-          | &nbsp;videos
+        .badges-bar
+          span.videos-count
+            i.material-icon local_movies
+            span(bo-text='conference.videos_count')
+          span.scope-badge
+            i.material-icon bookmark
+            span(bo-text='conference.scope')

@@ -1,6 +1,8 @@
 @require './bs/variables'
 
 $selection-color = lighten($link-color, 90%)
+$list-item-height = 100px
+$list-item-padding = 8px
 
 #search-suggest
   $border-color = rgb(39, 41, 43)
@@ -37,3 +39,8 @@ $selection-color = lighten($link-color, 90%)
     background-color: $brand-primary
   .thumbnail-cover
     background-position: 50%
+  .list
+    .item
+      height: ($list-item-height + $list-item-padding * 2)
+      padding: $list-item-padding
+      margin-bottom: 0

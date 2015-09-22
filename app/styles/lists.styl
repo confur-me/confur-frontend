@@ -1,6 +1,6 @@
-$list-item-height = 100px
-$list-item-padding = 8px
 $thumbnail-bg-color = darken($gray-lighter, 10%)
+
+@require './bs/variables'
 
 .list
   ul&
@@ -8,10 +8,8 @@ $thumbnail-bg-color = darken($gray-lighter, 10%)
     margin: 0
     & > li.item
       list-style-type: none
-
   .item
-    height: ($list-item-height + $list-item-padding * 2)
-    padding: $list-item-padding
+    margin-bottom: 15px
 
 .grid, .list
   .item
@@ -50,3 +48,15 @@ $thumbnail-bg-color = darken($gray-lighter, 10%)
   & > h1, & > h2, & > h3, & > h4, & > h5
     margin-top: 0
     margin-bottom: 0
+
+.badges-bar
+  margin-bottom: 5px
+  .videos-count, .scope-badge
+    color: lighten($gray-light, 40%)
+    font-size: 13px
+    .material-icon
+      font-size: 13px
+      vertical-align: middle
+      height: 15px
+  .videos-count + .scope-badge
+    margin-left: 10px

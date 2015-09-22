@@ -1,7 +1,8 @@
 .paginate-anything
   ul.pagination.links(ng-if="numPages > 1")
-    li(ng-class="{disabled: page <= 0}")
-      a(href="" ng-click="gotoPage(page-1)") &laquo;
+    li.prev-page(ng-class="{disabled: page <= 0}")
+      a(href="" ng-click="gotoPage(page-1)")
+        i.material-icon keyboard_arrow_left
     li(ng-if="linkGroupFirst() > 0")
       a(href="" ng-click="gotoPage(0)") 1
     li(ng-if="linkGroupFirst() > 1" class="disabled")
@@ -12,8 +13,9 @@
       a(href="" ) &hellip;
     li(ng-if="isFinite() && linkGroupLast() < numPages - 1")
       a(href="" ng-click="gotoPage(numPages-1)") {{ numPages }}
-    li(ng-class="{ disabled: page >= numPages - 1 }")
-      a(href="" ng-click="gotoPage(page+1)") &raquo;
+    li.next-page(ng-class="{ disabled: page >= numPages - 1 }")
+      a(href="" ng-click="gotoPage(page+1)")
+        i.material-icon keyboard_arrow_right
   //-.per-page(ng-if="perPagePresets.length > 0 && numPages > 1")
     //-select(ng-model="$parent.perPage" ng-options="p for p in perPagePresets")
     //-| per page

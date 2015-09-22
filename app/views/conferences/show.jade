@@ -1,11 +1,19 @@
-.conference-show
-  .page-header
-    h1
-      i.material-icon.md-dark school
-      span(ng-bind='conference.title')
-  .details(ng-bind="conference.description")
-  .events(ng-if='events.length > 0')
-    div(ng-controller='ListEventsCtrl')
-      h2 Events
-      ng-include(src='"/templates/events/_grid.html"')
-  videos-grid(pagination='true' heading='true')
+.row.conference-show
+  .col-xs-3
+    .thumbnail.conference-thumbnail(ng-bind-html='conference.thumbnailTag()')
+    h1.no-vertical-margin(ng-bind='conference.title')
+    .badges-bar
+      span.videos-count
+        i.material-icon local_movies
+        span(ng-bind='conference.videos_count')
+      span.scope-badge
+        i.material-icon bookmark
+        span(ng-bind='conference.scope')
+    a.conference-url(ng-href='{{ conference.url }}' ng-bind='conference.url | trimHttp' ng-if='conference.url')
+    .details(ng-bind="conference.description")
+    .events(ng-if='events.length > 0')
+      div(ng-controller='ListEventsCtrl')
+        h2 Events
+        ng-include(src='"/templates/events/_list.html"')
+  .col-xs-9
+    videos-grid(pagination='true' heading='true')
