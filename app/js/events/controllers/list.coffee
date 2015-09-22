@@ -9,4 +9,4 @@ module.exports = ($scope, $routeParams, Event) ->
         Event.byConference
           conference_slug: $routeParams.conferenceSlug
       else
-        Event.query(shuffle: 'true')
+        Event.query(shuffle: 'true', limit: 3)
