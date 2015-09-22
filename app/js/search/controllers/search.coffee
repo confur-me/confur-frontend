@@ -31,7 +31,7 @@ module.exports = ($scope, $location, $q, $rootScope, Search, Video, Conference, 
 
     if $scope.query && $scope.query != ""
       results = Search.search(q: $scope.query)
-      $rootScope.title = 'Search ' + $scope.query
+      $rootScope.title = $scope.query + ' conferences, events and videos'
       results.$promise.then (results) ->
         for item in results
           switch item.type
