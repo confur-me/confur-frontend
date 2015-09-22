@@ -1,7 +1,6 @@
 div(ng-controller='ListVideosCtrl')
   div(ng-show='videos.length > 0')
-    .page-header(ng-show='heading')
-      h2 Videos
+    h2.no-vertical-margin(ng-show='heading') Videos
     ng-include(src="'/templates/videos/_playlist.html'" ng-show='nowPlaying' autoscroll="")
     div(ng-show='!nowPlaying')
       div(ng-if='pagination')
