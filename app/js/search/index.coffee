@@ -13,4 +13,5 @@ App = require('angular')
     $routeProvider.when '/search',
       templateUrl: '/templates/search/index.html'
       controller: 'SearchCtrl'
+      title: 'Search'
   ]

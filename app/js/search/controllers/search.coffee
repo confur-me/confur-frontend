@@ -1,6 +1,6 @@
 'use strict'
 
-module.exports = ($scope, $location, $q, Search, Video, Conference, Event, Tag) ->
+module.exports = ($scope, $location, $q, $rootScope, Search, Video, Conference, Event, Tag) ->
   init = ->
     deferredEvents      = $q.defer()
     deferredConferences = $q.defer()
@@ -31,8 +31,8 @@ module.exports = ($scope, $location, $q, Search, Video, Conference, Event, Tag) 
 
     if $scope.query && $scope.query != ""
       results = Search.search(q: $scope.query)
+      $rootScope.title = 'Search ' + $scope.query
       results.$promise.then (results) ->
-        console.log results
         for item in results
           switch item.type
             when 'video'
