@@ -8,4 +8,5 @@ App = require('angular')
     $routeProvider.when '/tags/:tagSlug',
       templateUrl: '/templates/tags/show.html'
       controller: 'ShowTagCtrl'
+      title: 'Tag'
   ]

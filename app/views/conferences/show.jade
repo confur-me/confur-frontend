@@ -1,6 +1,7 @@
 .row
   .col-xs-3.conference-show
-    .thumbnail.conference-thumbnail(ng-bind-html='conference.thumbnailTag()')
+    .thumbnail.conference-thumbnail(ng-show='conference.thumbnail')
+      img(ng-src="{{ conference.thumbnail }}")
     h1.no-vertical-margin(ng-bind='conference.title')
     .badges-bar
       span.videos-count

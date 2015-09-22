@@ -12,13 +12,16 @@ App = require('angular')
     $routeProvider.when '/',
       templateUrl: '/templates/videos/index.html'
       controller: 'IndexVideosCtrl'
+      title: 'Videos'
 
     $routeProvider.when '/videos',
       templateUrl: '/templates/videos/index.html'
       controller: 'IndexVideosCtrl'
       reloadOnSearch: false
+      title: 'Videos'
 
     $routeProvider.when '/videos/:id',
       templateUrl: '/templates/videos/show.html'
       controller: 'ShowVideoCtrl'
+      title: 'Video'
   ]

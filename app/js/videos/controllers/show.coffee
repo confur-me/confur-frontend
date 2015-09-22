@@ -1,6 +1,7 @@
 'use strict'
 
-module.exports = ($scope, $routeParams, Video) ->
-  console.log $routeParams.id
+module.exports = ($scope, $routeParams, $rootScope, Video) ->
   $scope.video = Video.find($routeParams.id)
-  console.log $scope.video
+
+  $scope.video.$promise.then (video) ->
+    $rootScope.title = video.title

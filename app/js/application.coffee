@@ -59,6 +59,10 @@ App
     $locationProvider.html5Mode(true)
   ])
 
+App.run ($rootScope) ->
+  $rootScope.$on '$routeChangeSuccess', (event, current, previous) ->
+    $rootScope.title = current.$$route.title
+
 require('videojs-youtube')
 require('videojs-playlist')
 require('videojs-persistvolume')

@@ -5,7 +5,7 @@ Ps  = require('perfect-scrollbar')
 $   = require('jquery')
 tpl = require('mnml-tpl')
 
-module.exports = ($scope, $routeParams, $location, $q, location, Video) ->
+module.exports = ($scope, $routeParams, $location, $q, location, $rootScope, Video) ->
 
   playlistContainer = angular.element('#playlist')[0]
   deferredVideos    = $q.defer()
@@ -91,6 +91,7 @@ module.exports = ($scope, $routeParams, $location, $q, location, Video) ->
     if $scope.nowPlaying
       location.skipReload().search('play', $scope.nowPlaying.id)
       $scope.$applyAsync()
+      $rootScope.title = $scope.nowPlaying.title
       # TODO: scroll to video element
 
     videoItem = $(playlistContainer).find('#video-'+videoId)

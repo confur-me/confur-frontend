@@ -11,8 +11,10 @@ App = require('angular')
     $routeProvider.when '/conferences',
       templateUrl: '/templates/conferences/list.html'
       controller: 'ListConferencesCtrl'
+      title: 'Conferences'
 
     $routeProvider.when '/conferences/:conferenceSlug',
       templateUrl: '/templates/conferences/show.html'
       controller: 'ShowConferenceCtrl'
+      title: 'Conference'
   ]
