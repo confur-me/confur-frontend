@@ -26,6 +26,7 @@ module.exports = ($scope, $routeParams, $location, $q, location, $rootScope, Vid
       deferredVideos.resolve(data)
     else
       $scope.videos = data
+    angular.element('.videos-list').removeClass('loading')
     data
 
   playVideoFromUrl = ->
@@ -51,8 +52,10 @@ module.exports = ($scope, $routeParams, $location, $q, location, $rootScope, Vid
       if $location.search().page
         if parseInt($location.search().page, 10) != pageParam
           location.skipReload().search('page', pageParam)
+          angular.element('.videos-list').addClass('loading')
       else if page > 0
         location.skipReload().search('page', pageParam)
+        angular.element('.videos-list').addClass('loading')
 
     $scope.$on '$locationChangeSuccess', ->
       page = $location.search().page - 1
