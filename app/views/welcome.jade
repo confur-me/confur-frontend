@@ -8,6 +8,10 @@ html(lang='en')
     link(rel='stylesheet' href='/assets/vendor.css')
     link(rel='stylesheet' href='/assets/application.css')
     title WELCOME
+    link(rel="icon" type="image/png" href="/assets/favicon_16.png" sizes="16x16")
+    link(rel="icon" type="image/png" href="/assets/favicon_32.png" sizes="32x32")
+    link(rel="icon" type="image/png" href="/assets/favicon_64.png" sizes="64x64")
+    link(rel="icon" type="image/png" href="/assets/favicon_128.png" sizes="128x128")
     base(href='/')
     script.
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -22,10 +26,6 @@ html(lang='en')
       .logo(bs-affix=true affix-timeout=1000)
       .wrapper-inner
         .cover-container
-          //-.masthead.clearfix
-            //-.inner
-              //-h3.masthead-brand Cover
-
           .inner.cover.text-left(ng-controller='WelcomeCtrl')
             p.h4 Yep, someone has finally done it.
             p.h1

@@ -9,7 +9,7 @@
       span.scope-badge
         i.material-icon bookmark
         span(ng-bind='conference.scope')
-    a.conference-url(ng-href='{{ conference.url }}' ng-bind='conference.url | trimHttp' ng-if='conference.url')
+    a.conference-url(target="_blank" ng-href='{{ conference.url }}' ng-bind='conference.url | trimHttp' ng-if='conference.url')
     .details(ng-bind="conference.description")
     .events(ng-if='events.length > 0')
       div(ng-controller='ListEventsCtrl')
