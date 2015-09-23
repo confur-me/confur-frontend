@@ -1,4 +1,4 @@
 'use strict'
 
-module.exports = ($scope) ->
-  return
+module.exports = ($scope, $rootScope) ->
+  $rootScope.title = 'Something bad happened'

@@ -61,6 +61,11 @@ App
   .config(['$httpProvider', ($httpProvider) ->
     $httpProvider.interceptors.push('requestErrorInterceptor')
   ])
+  .config(['$routeProvider', ($routeProvider) ->
+    $routeProvider.otherwise
+      templateUrl: '/templates/main/404.html'
+      controller: '404Ctrl'
+  ])
 
 App.run ($rootScope) ->
   $rootScope.$on '$routeChangeSuccess', (event, current, previous) ->
