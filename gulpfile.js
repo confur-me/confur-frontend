@@ -127,15 +127,11 @@ gulp.task('jade', function () {
 gulp.task('symlinks', function () {
   return gulp.src([
     './public/templates/index.html',
-    './public/templates/welcome.html',
-    './public/templates/errors/404.html',
-    './public/templates/errors/500.html'
+    './public/templates/welcome.html'
     ], { read: false })
     .pipe(symlink([
         './public/index.html',
-        './public/welcome.html',
-        './public/404.html',
-        './public/500.html'
+        './public/welcome.html'
         ], { force: true }))
 });
 

@@ -58,6 +58,9 @@ App
   .config(['$locationProvider', ($locationProvider) ->
     $locationProvider.html5Mode(true)
   ])
+  .config(['$httpProvider', ($httpProvider) ->
+    $httpProvider.interceptors.push('requestErrorInterceptor')
+  ])
 
 App.run ($rootScope) ->
   $rootScope.$on '$routeChangeSuccess', (event, current, previous) ->
