@@ -30,6 +30,7 @@ module.exports = ($resource) ->
     event
 
   Event::init = ->
+    @thumbnail ||= @conference?.thumbnail
     # init
 
   Event::thumbnailTag = ->
@@ -39,6 +40,9 @@ module.exports = ($resource) ->
       tpl(thumbnailPicture)(thumbnailUrl: @conference.thumbnail)
     else
       thumbnailPlaceholder
+
+  Event::linkToShow = ->
+    location.origin + '/events/'+@id
 
   Event
 

@@ -1,3 +1,11 @@
+div(ng-if='event.id')
+  div(ng-if='event.thumbnail')
+    replace-meta-tag(meta-tag-name='og:image' content='{{ event.thumbnail }}' property='og:image')
+  replace-meta-tag(meta-tag-name='og:title' content='{{ event.title }}' property='og:title')
+  replace-meta-tag(meta-tag-name='og:type' content='article' property='og:type')
+  replace-meta-tag(meta-tag-name='og:url' content='{{ event.linkToShow() }}' property='og:url')
+  replace-meta-tag(meta-tag-name='og:description' content='{{ event.description }}' property='og:description')
+
 .event-show
   .page-header
     h1

@@ -1,3 +1,10 @@
+div(ng-if='conference.slug')
+  div(ng-if='conference.thumbnail')
+    replace-meta-tag(meta-tag-name='og:image' content='{{ conference.thumbnail }}' property='og:image')
+  replace-meta-tag(meta-tag-name='og:title' content='{{ conference.title }}' property='og:title')
+  replace-meta-tag(meta-tag-name='og:type' content='article' property='og:type')
+  replace-meta-tag(meta-tag-name='og:url' content='{{ conference.linkToShow() }}' property='og:url')
+  replace-meta-tag(meta-tag-name='og:description' content='{{ conference.description }}' property='og:description')
 .row
   .col-xs-3.conference-show
     .thumbnail.conference-thumbnail(ng-show='conference.thumbnail')

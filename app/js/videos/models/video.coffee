@@ -66,4 +66,7 @@ module.exports = ($resource, $location) ->
     else
       thumbnailPlaceholder
 
+  Video::linkToShow = ->
+    location.origin + '/videos/'+@id
+
   Video

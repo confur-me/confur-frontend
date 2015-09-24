@@ -26,6 +26,7 @@ require('./lib/confur-confcrumbs')
 require('./lib/confur-pagination')
 require('./lib/paginate-anything')
 require('./lib/angular-trim-http')
+require('./lib/angular-meta-tags')
 
 App = Angular
   .module('confur', [
@@ -47,7 +48,8 @@ App = Angular
     'confur-pagination',
     'confur-confcrumbs',
     'bgf.paginateAnything',
-    'angular-trim-http'
+    'angular-trim-http',
+    'angular-meta-tags'
   ])
 
 App

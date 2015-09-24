@@ -31,4 +31,7 @@ module.exports = ($resource) ->
     else
       thumbnailPlaceholder
 
+  Conference::linkToShow = ->
+    location.origin + '/conferences/'+@slug
+
   Conference

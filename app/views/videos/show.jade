@@ -1,3 +1,9 @@
+div(ng-if='video.id')
+  replace-meta-tag(meta-tag-name='og:image' content='{{ video.thumbnail }}' property='og:image')
+  replace-meta-tag(meta-tag-name='og:title' content='{{ video.title }}' property='og:title')
+  replace-meta-tag(meta-tag-name='og:type' content='article' property='og:type')
+  replace-meta-tag(meta-tag-name='og:url' content='{{ video.linkToShow() }}' property='og:url')
+
 .row
   .col-md-9
     .video-show
