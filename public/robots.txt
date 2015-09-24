@@ -1,0 +1,14 @@
+User-agent: *
+
+Allow: /$
+Allow: /assets
+
+Allow: /conferences
+Allow: /videos
+Allow: /events
+Allow: /search
+
+Disallow: /
+
+Host: confur.me
+Crawl-Delay: 0.5
