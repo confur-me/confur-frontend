@@ -2,6 +2,11 @@ User-agent: *
 
 Allow: /$
 Allow: /assets
+Allow: /templates
+Allow: /fonts
+Allow: /*.html
+Allow: /404
+Allow: /500
 
 Allow: /conferences
 Allow: /videos
