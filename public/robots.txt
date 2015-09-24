@@ -8,6 +8,8 @@ Allow: /*.html
 Allow: /404
 Allow: /500
 
+Allow: /api
+
 Allow: /conferences
 Allow: /videos
 Allow: /events
