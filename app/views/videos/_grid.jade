@@ -8,18 +8,18 @@ div(ng-controller='ListVideosCtrl')
           collection='videos'
           template-url='/templates/shared/_pagination.html'
           url='videosUrl'
-          transform-response='paginateVideos'
+          transform-response='initializeVideos'
           page='$parent.page'
         )
       .grid.videos-list.row
         .col-xs-6.col-sm-4.col-md-4.col-lg-3(ng-repeat='video in videos track by video.id' )
           .item.video-item(bindonce="video")
-            a(ng-click="play(video.id)" href="javascript:;")
+            a(ng-click='play(video.id); $event.preventDefault()' bo-href="video.linkToPlay()")
               .thumbnail
                 img(bo-src='video.thumbnail')
                 i.play.material-icon.md-light play_circle_filled
             .details
               h4
-                a(ng-click="play(video.id)" href="javascript:;" bo-text='video.title')
+                a(ng-click='play(video.id); $event.preventDefault()' bo-href="video.linkToPlay()" bo-text='video.title')
               confcrumbs(conference='video.conference' event='video.event')
               confur-tags(tags="video.tags" limit=5)

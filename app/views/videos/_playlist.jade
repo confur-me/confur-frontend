@@ -38,7 +38,7 @@
           //-page='$parent.$parent.page'
         //-)
         ul.list.videos-list
-          li.item.video-item(ng-repeat='video in videos track by video.id' bindonce='video' ng-class='{ "active": video.id == nowPlaying.id }' ng-click="play(video.id)" bo-id='"video-"+video.id')
+          li.item.video-item(ng-repeat='video in videos track by video.id' bindonce='video' ng-class='{ "active": video.id == nowPlaying.id }' ng-click="play(video.id); $event.preventDefault()" bo-id='"video-"+video.id')
             .media
               .media-left.media-top
                 .thumbnail

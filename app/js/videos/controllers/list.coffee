@@ -15,19 +15,27 @@ module.exports = ($scope, $routeParams, $location, $q, location, $rootScope, Vid
 
   $scope.videos.$promise = deferredVideos.promise
   $scope.videos.$promise.then (videos) ->
-    $scope.videos = videos
+    $scope.videos = _.map videos, (video) ->
+      v = new Video(video)
+      v.init()
+      v
 
   $scope.initScroll = ->
     playlistContainer = angular.element('#playlist')[0]
     Ps.initialize(playlistContainer)
 
-  $scope.paginateVideos = (data) ->
+  $scope.initializeVideos = (data) ->
+    videos = _.map data, (video) ->
+      v = new Video(video)
+      v.init()
+      v
+
     if $scope.videos.$promise
-      deferredVideos.resolve(data)
+      deferredVideos.resolve(videos)
     else
-      $scope.videos = data
+      $scope.videos = videos
     angular.element('.videos-list').removeClass('loading')
-    data
+    videos
 
   playVideoFromUrl = ->
     if $location.search().play

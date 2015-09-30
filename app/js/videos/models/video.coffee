@@ -1,6 +1,7 @@
 'use strict'
 
 tpl = require('mnml-tpl')
+$   = require('jquery')
 
 module.exports = ($resource, $location) ->
 
@@ -68,5 +69,10 @@ module.exports = ($resource, $location) ->
 
   Video::linkToShow = ->
     location.origin + '/videos/'+@id
+
+  Video::linkToPlay = ->
+    params = $.extend({}, $location.search())
+    params.play = @id
+    $location.path() + '?' + $.param(params)
 
   Video
